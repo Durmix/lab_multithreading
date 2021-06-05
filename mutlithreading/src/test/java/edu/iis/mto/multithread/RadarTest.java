@@ -1,7 +1,7 @@
 package edu.iis.mto.multithread;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -29,7 +29,7 @@ class RadarTest {
         }).when(executorService).submit(any(Runnable.class));
     }
 
-    @Test
+    @RepeatedTest(10)
     void launchZeroPatriotWhenNoticesAScudMissile() {
         BetterRadar radar = new BetterRadar(executorService, batteryMock, 0);
         Scud missile = new Scud();
@@ -37,7 +37,7 @@ class RadarTest {
         verify(batteryMock, times(0)).launchPatriot(missile);
     }
 
-    @Test
+    @RepeatedTest(10)
     void launchPatriotOnceWhenNoticesAScudMissile() {
         BetterRadar radar = new BetterRadar(executorService, batteryMock, 1);
         Scud missile = new Scud();
@@ -45,7 +45,7 @@ class RadarTest {
         verify(batteryMock, times(1)).launchPatriot(missile);
     }
 
-    @Test
+    @RepeatedTest(10)
     void launchPatriotTwiceWhenNoticesAScudMissile() {
         BetterRadar radar = new BetterRadar(executorService, batteryMock, 2);
         Scud missile = new Scud();
@@ -53,7 +53,7 @@ class RadarTest {
         verify(batteryMock, times(2)).launchPatriot(missile);
     }
 
-    @Test
+    @RepeatedTest(10)
     void launchPatriotThriceWhenNoticesAScudMissile() {
         BetterRadar radar = new BetterRadar(executorService, batteryMock, 3);
         Scud missile = new Scud();
@@ -61,7 +61,7 @@ class RadarTest {
         verify(batteryMock, times(3)).launchPatriot(missile);
     }
 
-    @Test
+    @RepeatedTest(10)
     void launchPatriotFiveTimesWhenNoticesAScudMissile() {
         BetterRadar radar = new BetterRadar(executorService, batteryMock, 5);
         Scud missile = new Scud();
